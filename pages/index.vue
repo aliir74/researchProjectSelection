@@ -1,18 +1,53 @@
 <template>
-  <section class="container">
-    <b-card bg-variant="primary"
-            text-variant="white"
+  <b-container style="width: 50vw;">
+    <b-card border-variant="primary"
             header="Primary"
-            class="text-center">
-      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            header-bg-variant="primary"
+            header-text-variant="white"
+            align="center" class="w-100">
+      <b-row>
+        <b-col sm="3"><label for="input-valid">نام کاربری:</label></b-col>
+        <b-col sm="9">
+          <b-form-input id="input-valid" v-model="username" :state="usernameEnter" type="text" placeholder="0017943310"></b-form-input>
+        </b-col>
+      </b-row>
+      <b-row class="my-3">
+        <b-col sm="3"><label>رمز عبور:</label></b-col>
+        <b-col sm="9"><b-form-input :type="password"></b-form-input></b-col>
+      </b-row>
+
+      <b-row>
+        <b-col sm="3"><label>پایه‌ی تحصیلی:</label></b-col>
+        <b-col>
+          <b-form-select v-model="selected" :options="options" class="mb-3" required>
+          </b-form-select>
+        </b-col>
+      </b-row>
+
     </b-card>
-  </section>
+  </b-container>
 </template>
 
 <script>
 import Logo from '~/components/Logo.vue'
 
 export default {
+  data: function () {
+    return {
+      username: '',
+      selected: 7,
+      options: [
+        {value: 7, text: 'پایه‌ی هفتم'},
+        {value: 8, text: 'پایه‌ی هشتم'},
+        {value: 9, text: 'پایه‌ی نهم'}
+      ]
+    }
+  },
+  computed: {
+    usernameEnter: function () {
+      return (this.username.length === 10 && /^\d+$/.test(this.username))
+    }
+  },
   components: {
     Logo
   }
@@ -48,4 +83,5 @@ export default {
 .links {
   padding-top: 15px;
 }
+
 </style>
