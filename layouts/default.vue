@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div dir="rtl">
     <nuxt/>
   </div>
 </template>

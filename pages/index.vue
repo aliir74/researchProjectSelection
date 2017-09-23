@@ -1,18 +1,11 @@
 <template>
   <section class="container">
-    <div>
-      <logo/>
-      <h1 class="title">
-        research-project-selection
-      </h1>
-      <h2 class="subtitle">
-        Nuxt.js project
-      </h2>
-      <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green">Documentation</a>
-        <a href="https://github.com/nuxt/nuxt.js" target="_blank" class="button--grey">GitHub</a>
-      </div>
-    </div>
+    <b-card bg-variant="primary"
+            text-variant="white"
+            header="Primary"
+            class="text-center">
+      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </b-card>
   </section>
 </template>
 
