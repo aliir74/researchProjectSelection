@@ -1,6 +1,6 @@
 <template>
-  <b-container style="width: 50vw;">
-    <b-card border-variant="primary"
+  <b-container style="width: 50vw;" class="mt-2">
+    <b-card border-variant=""
             header="Primary"
             header-bg-variant="primary"
             header-text-variant="white"
@@ -13,7 +13,7 @@
       </b-row>
       <b-row class="my-3">
         <b-col sm="3"><label>رمز عبور:</label></b-col>
-        <b-col sm="9"><b-form-input :type="password"></b-form-input></b-col>
+        <b-col sm="9"><b-form-input type="password"></b-form-input></b-col>
       </b-row>
 
       <b-row>
@@ -23,7 +23,15 @@
           </b-form-select>
         </b-col>
       </b-row>
-
+      <b-row v-for="(pr, index) in projects">
+        <b-col sm="3">
+          اولویت {{index+1}}
+        </b-col>
+        <b-col>
+          <b-form-select v-model="selectedProject" :options="projects" class="mb-3" required>
+          </b-form-select>
+        </b-col>
+      </b-row>
     </b-card>
   </b-container>
 </template>
@@ -40,7 +48,18 @@ export default {
         {value: 7, text: 'پایه‌ی هفتم'},
         {value: 8, text: 'پایه‌ی هشتم'},
         {value: 9, text: 'پایه‌ی نهم'}
-      ]
+      ],
+      projects: [
+        {value: null, text: 'انتخاب کنید!'},
+        {value: 'test1', text: 'مسئله‌ی ۱'},
+        {value: 'test2', text: 'مسئله‌ی ۲'},
+        {value: 'test3', text: 'مسئله‌ی ۳'},
+        {value: 'test4', text: 'مسئله‌ی ۴'},
+        {value: 'test5', text: 'مسئله‌ی ۵'},
+        {value: 'test6', text: 'مسئله‌ی ۶'},
+        {value: 'test7', text: 'مسئله‌ی ۷'}
+      ],
+      selectedProject: null
     }
   },
   computed: {
