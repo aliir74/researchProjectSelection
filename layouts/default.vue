@@ -49,4 +49,9 @@ html {
   color: #fff;
   background-color: #35495e;
 }
+
+  body {
+    font-family: "B Nazanin";
+
+  }
 </style>

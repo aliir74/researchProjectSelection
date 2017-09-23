@@ -1,8 +1,8 @@
 <template>
   <b-container style="width: 50vw;" class="mt-2">
-    <b-card border-variant=""
-            header="Primary"
-            header-bg-variant="primary"
+    <b-card border-variant="success"
+            header="فرم ثبت نام پژوهشی"
+            header-bg-variant="success"
             header-text-variant="white"
             align="center" class="w-100">
       <b-row>
