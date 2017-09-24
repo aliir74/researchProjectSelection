@@ -37,7 +37,7 @@
         <b-button :variant="'outline-success'" class="mx-3" :disabled="checkSend">
           ارسال
         </b-button>
-        <b-button :variant="'outline-danger'">
+        <b-button :variant="'outline-danger'" @click="resetPriorities">
           پاک کردن اولویت‌ها
         </b-button>
       </b-row>
@@ -107,6 +107,14 @@ export default {
     }
   },
   methods: {
+    resetPriorities: function () {
+      var tmp = []
+      for (var i = 0; i < this.selectedProject.length; i++) {
+        tmp.push(null)
+      }
+      this.selectedProject = tmp.concat()
+      console.log(this.selectedProject)
+    }
   },
   components: {
     Logo
