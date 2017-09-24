@@ -12,8 +12,10 @@
         </b-col>
       </b-row>
       <b-row class="my-3">
-        <b-col sm="3"><label>رمز عبور:</label></b-col>
-        <b-col sm="9"><b-form-input type="password"></b-form-input></b-col>
+        <b-col sm="3"><label for="input2-valid">نام کاربری:</label></b-col>
+        <b-col sm="9">
+          <b-form-input id="input2-valid" v-model="password" :state="passwordEnter" type="password" placeholder=""></b-form-input>
+        </b-col>
       </b-row>
 
       <b-row>
@@ -34,12 +36,18 @@
       </b-row>
 
       <b-row class="mx-auto">
-        <b-button :variant="'outline-success'" class="mx-3" :disabled="checkSend">
+        <b-btn id="sendBtn" :variant="'outline-success'" class="mx-3" :disabled="checkSend">
           ارسال
-        </b-button>
-        <b-button :variant="'outline-danger'" @click="resetPriorities">
+        </b-btn>
+        <b-popover class="t" target="sendBtn"
+                   triggers="hover focus"
+                   content="فقط یک بار مجاز به ثبت نام هستید">
+        </b-popover>
+
+        <b-btn id="test" :variant="'outline-danger'" @click="resetPriorities">
           پاک کردن اولویت‌ها
-        </b-button>
+        </b-btn>
+
       </b-row>
     </b-card>
   </b-container>
@@ -52,6 +60,7 @@ export default {
   data: function () {
     return {
       username: '',
+      password: '',
       selected: 7,
       options: [
         {value: 7, text: 'پایه‌ی هفتم'},
@@ -75,6 +84,9 @@ export default {
     usernameEnter: function () {
       return (this.username.length === 10 && /^\d+$/.test(this.username))
     },
+    passwordEnter: function () {
+      return (this.password.length === 10 && /^\d+$/.test(this.password))
+    },
     projectOptions: function () {
       var ans = this.projects.slice()
       for (var i = 0; i < ans.length; i++) {
@@ -93,17 +105,20 @@ export default {
       return ans
     },
     checkSend: function () {
+      return false
+      /*
       var nullCnt = 0
       this.selectedProject.forEach(function (i) {
         if (i === null) {
           nullCnt += 1
         }
       })
-      if (nullCnt === 1) {
+      if (nullCnt === 1 && this.usernameEnter && this.passwordEnter) {
         return false
       } else {
         return true
       }
+      */
     }
   },
   methods: {
@@ -151,5 +166,14 @@ export default {
 .links {
   padding-top: 15px;
 }
+
+  .t {
+    text-align: right;
+    direction: rtl !important;
+  }
+
+  button {
+    cursor: pointer !important;
+  }
 
 </style>
