@@ -34,7 +34,7 @@
       </b-row>
 
       <b-row class="mx-auto">
-        <b-button :variant="'outline-success'" class="mx-3">
+        <b-button :variant="'outline-success'" class="mx-3" :disabled="checkSend">
           ارسال
         </b-button>
         <b-button :variant="'outline-danger'">
@@ -91,7 +91,22 @@ export default {
         }
       }
       return ans
+    },
+    checkSend: function () {
+      var nullCnt = 0
+      this.selectedProject.forEach(function (i) {
+        if (i === null) {
+          nullCnt += 1
+        }
+      })
+      if (nullCnt === 1) {
+        return false
+      } else {
+        return true
+      }
     }
+  },
+  methods: {
   },
   components: {
     Logo
