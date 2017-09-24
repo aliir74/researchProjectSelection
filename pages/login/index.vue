@@ -1,0 +1,56 @@
+<template>
+  <b-container style="width: 50vw;" class="my-4">
+    <b-card border-variant="success"
+            header="ورود"
+            header-bg-variant="success"
+            header-text-variant="white"
+            align="center" class="w-100">
+      <b-row>
+        <b-col sm="3"><label for="input-valid">نام کاربری:</label></b-col>
+        <b-col sm="9">
+          <b-form-input id="input-valid" v-model="username" type="text" placeholder="0017943310"></b-form-input>
+        </b-col>
+      </b-row>
+      <b-row class="my-3">
+        <b-col sm="3"><label for="input2-valid">رمز عبور:</label></b-col>
+        <b-col sm="9">
+          <b-form-input id="input2-valid" v-model="password" type="password" placeholder=""></b-form-input>
+        </b-col>
+      </b-row>
+
+      <b-row class="mx-auto">
+        <b-btn id="sendBtn" :variant="'outline-success'" class="mx-3" @click="login">
+          ورود
+        </b-btn>
+      </b-row>
+    </b-card>
+  </b-container>
+</template>
+
+<script>
+
+export default {
+  data: function () {
+    return {
+      username: '',
+      password: ''
+    }
+  },
+  methods: {
+    login: function () {
+      this.$axios.post('/api/login', {
+        username: this.username,
+        password: this.password
+      })
+    }
+  }
+}
+</script>
+
+<style>
+
+  button {
+    cursor: pointer !important;
+  }
+
+</style>

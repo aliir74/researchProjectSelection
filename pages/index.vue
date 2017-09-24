@@ -12,7 +12,7 @@
         </b-col>
       </b-row>
       <b-row class="my-3">
-        <b-col sm="3"><label for="input2-valid">نام کاربری:</label></b-col>
+        <b-col sm="3"><label for="input2-valid">رمز عبور:</label></b-col>
         <b-col sm="9">
           <b-form-input id="input2-valid" v-model="password" :state="passwordEnter" type="password" placeholder=""></b-form-input>
         </b-col>
@@ -59,7 +59,7 @@ import Logo from '~/components/Logo.vue'
 export default {
   fetch ({ store, redirect }) {
     if (!store.state.authUser) {
-      return redirect('/test')
+      return redirect('/login')
     }
   },
   data: function () {
