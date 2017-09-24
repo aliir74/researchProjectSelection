@@ -1,5 +1,5 @@
 <template>
-  <b-container style="width: 50vw;" class="mt-4">
+  <b-container style="width: 50vw;" class="my-4">
     <b-card border-variant="success"
             header="فرم ثبت نام پژوهشی"
             header-bg-variant="success"
