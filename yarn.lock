@@ -2,6 +2,12 @@
 # yarn lockfile v1
 
 
+"@nuxtjs/bootstrap-vue@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/bootstrap-vue/-/bootstrap-vue-2.0.2.tgz#3171bf385d39506b405ee4894842fc95bd598725"
+  dependencies:
+    bootstrap-vue "^1.0.0-beta.7"
+
 "@nuxtjs/youch@3.0.2":
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/@nuxtjs/youch/-/youch-3.0.2.tgz#03fff829ca45bd1c3ece84c08270f9686229dd4a"
@@ -875,6 +881,16 @@ boom@2.x.x:
   resolved "https://registry.yarnpkg.com/boom/-/boom-2.10.1.tgz#39c8918ceff5799f83f9492a848f625add0c766f"
   dependencies:
     hoek "2.x.x"
+
+bootstrap-vue@^1.0.0-beta.7:
+  version "1.0.0-beta.9"
+  resolved "https://registry.yarnpkg.com/bootstrap-vue/-/bootstrap-vue-1.0.0-beta.9.tgz#4e0bc5bcb95a90dc3bec7124ea3ddf5cc4c6ffa6"
+  dependencies:
+    bootstrap "^4.0.0-beta"
+
+bootstrap@^4.0.0-beta:
+  version "4.0.0-beta"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.0.0-beta.tgz#dc5928175d2e71310bc668cf9e05a907211b72a6"
 
 brace-expansion@^1.1.7:
   version "1.1.8"

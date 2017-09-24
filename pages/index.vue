@@ -1,5 +1,5 @@
 <template>
-  <b-container style="width: 50vw;" class="mt-2">
+  <b-container style="width: 50vw;" class="mt-4">
     <b-card border-variant="success"
             header="فرم ثبت نام پژوهشی"
             header-bg-variant="success"
@@ -23,12 +23,20 @@
           </b-form-select>
         </b-col>
       </b-row>
+      <b-row>
+        <b-col sm="3">
+        </b-col>
+        <b-col>
+          <b-form-select v-model="selectedProject[0]" :options="projects" class="mb-3" required>
+          </b-form-select>
+        </b-col>
+      </b-row>
       <b-row v-for="(pr, index) in projects">
         <b-col sm="3">
           اولویت {{index+1}}
         </b-col>
         <b-col>
-          <b-form-select v-model="selectedProject" :options="projects" class="mb-3" required>
+          <b-form-select v-model="selectedProject[index]" :options="tmpProjects" class="mb-3" required @change.native="refreshAvailability">
           </b-form-select>
         </b-col>
       </b-row>
@@ -51,20 +59,44 @@ export default {
       ],
       projects: [
         {value: null, text: 'انتخاب کنید!'},
-        {value: 'test1', text: 'مسئله‌ی ۱'},
-        {value: 'test2', text: 'مسئله‌ی ۲'},
-        {value: 'test3', text: 'مسئله‌ی ۳'},
-        {value: 'test4', text: 'مسئله‌ی ۴'},
-        {value: 'test5', text: 'مسئله‌ی ۵'},
-        {value: 'test6', text: 'مسئله‌ی ۶'},
-        {value: 'test7', text: 'مسئله‌ی ۷'}
+        {value: 1, text: 'مسئله‌ی ۱'},
+        {value: 2, text: 'مسئله‌ی ۲'},
+        {value: 3, text: 'مسئله‌ی ۳'},
+        {value: 4, text: 'مسئله‌ی ۴'},
+        {value: 5, text: 'مسئله‌ی ۵'},
+        {value: 6, text: 'مسئله‌ی ۶'},
+        {value: 7, text: 'مسئله‌ی ۷'}
       ],
-      selectedProject: null
+      selectedProject: [null, null, null, null, null, null, null, null]
     }
   },
   computed: {
     usernameEnter: function () {
       return (this.username.length === 10 && /^\d+$/.test(this.username))
+    },
+    tmpProjects: function () {
+      var ans = this.projects.slice()
+      for (var i = 0; i < ans.length; i++) {
+        ans[i].disabled = false
+      }
+      for (i = 0; i < this.selectedProject.length; i++) {
+        if (this.selectedProject[i] !== null) {
+          for (var j = 0; j < ans.length; j++) {
+            if (this.selectedProject[i] === ans[j].value) {
+              ans[j].disabled = true
+              break
+            }
+          }
+        }
+      }
+      console.log(this.projects)
+      console.log(ans)
+      return ans
+    }
+  },
+  methods: {
+    refreshAvailability: function (old, newVal) {
+      console.log(old, newVal)
     }
   },
   components: {
