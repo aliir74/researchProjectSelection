@@ -23,22 +23,23 @@
           </b-form-select>
         </b-col>
       </b-row>
-      <b-row>
-        <b-col sm="3">
-        </b-col>
-        <b-col>
-          <b-form-select v-model="selectedProject[0]" :options="projects" class="mb-3" required>
-          </b-form-select>
-        </b-col>
-      </b-row>
-      <b-row v-for="(pr, index) in projects">
+      <b-row v-for="(pr, index) in projects" v-if="index !== projects.length-1">
         <b-col sm="3">
           اولویت {{index+1}}
         </b-col>
         <b-col>
-          <b-form-select v-model="selectedProject[index]" :options="tmpProjects" class="mb-3" required @change.native="refreshAvailability">
+          <b-form-select v-model="selectedProject[index]" :options="projectOptions" class="mb-3" required>
           </b-form-select>
         </b-col>
+      </b-row>
+
+      <b-row class="mx-auto">
+        <b-button :variant="'outline-success'" class="mx-3">
+          ارسال
+        </b-button>
+        <b-button :variant="'outline-danger'">
+          پاک کردن اولویت‌ها
+        </b-button>
       </b-row>
     </b-card>
   </b-container>
@@ -74,7 +75,7 @@ export default {
     usernameEnter: function () {
       return (this.username.length === 10 && /^\d+$/.test(this.username))
     },
-    tmpProjects: function () {
+    projectOptions: function () {
       var ans = this.projects.slice()
       for (var i = 0; i < ans.length; i++) {
         ans[i].disabled = false
@@ -89,14 +90,7 @@ export default {
           }
         }
       }
-      console.log(this.projects)
-      console.log(ans)
       return ans
-    }
-  },
-  methods: {
-    refreshAvailability: function (old, newVal) {
-      console.log(old, newVal)
     }
   },
   components: {
