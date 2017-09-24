@@ -14,7 +14,10 @@ module.exports = {
     ]
   },
   modules: [
-    '@nuxtjs/bootstrap-vue'
+    '@nuxtjs/bootstrap-vue', '@nuxtjs/proxy'
+  ],
+  proxy: [
+    'http://localhost:8000/api',
   ],
   /*
   ** Customize the progress bar color
