@@ -1,9 +1,6 @@
-import Vue from 'vue'
 import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
 // import * as Cookie from 'js-cookie'
-var VueCookie = require('vue-cookie')
-Vue.use(VueCookie)
 
 const store = () => {
   return new Vuex.Store({
@@ -14,7 +11,7 @@ const store = () => {
       name: null,
       grade: null
     },
-
+    plugins: [createPersistedState()],
     mutations: {
       SET_USER: function (state, {username, password}) {
         state.username = username
@@ -24,22 +21,7 @@ const store = () => {
         state.name = name
         state.grade = grade
       }
-    },
-    plugins: [
-      createPersistedState({
-        paths: ['user'],
-        storage: {
-          /*
-          getItem: (key) => Cookie.getJSON(key),
-          setItem: (key, value) => Cookie.set(key, value, { expires: 3, secure: true }),
-          removeItem: (key) => Cookie.remove(key)
-          */
-          getItem: (key) => Vue.cookie.get(key),
-          setItem: (key, value) => Vue.cookie.set(key, value, { expires: 3 }),
-          removeItem: (key) => Vue.cookie.delete(key)
-        }
-      })
-    ]
+    }
   })
 }
 
