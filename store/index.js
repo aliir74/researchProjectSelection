@@ -31,7 +31,7 @@ const store = () => new Vuex.Store({
     },
     login ({ commit }, { username, password }) {
       var data = JSON.stringify({
-        username,
+        username: username,
         password: password
       })
       console.log(data)

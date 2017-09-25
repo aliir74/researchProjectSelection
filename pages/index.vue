@@ -59,11 +59,9 @@ import Logo from '~/components/Logo.vue'
 export default {
   fetch ({ store, redirect }) {
     console.log('!!!! ' + store.state.authUser)
-    /*
     if (!store.state.authUser) {
       return redirect('/login')
     }
-    */
   },
   data: function () {
     return {
