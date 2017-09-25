@@ -6,22 +6,9 @@
             header-text-variant="white"
             align="center" class="w-100">
       <b-row>
-        <b-col sm="3"><label for="input-valid">نام کاربری:</label></b-col>
-        <b-col sm="9">
-          <b-form-input id="input-valid" v-model="username" :state="usernameEnter" type="text" placeholder="0017943310"></b-form-input>
-        </b-col>
-      </b-row>
-      <b-row class="my-3">
-        <b-col sm="3"><label for="input2-valid">رمز عبور:</label></b-col>
-        <b-col sm="9">
-          <b-form-input id="input2-valid" v-model="password" :state="passwordEnter" type="password" placeholder=""></b-form-input>
-        </b-col>
-      </b-row>
-
-      <b-row>
         <b-col sm="3"><label>پایه‌ی تحصیلی:</label></b-col>
         <b-col>
-          <b-form-select v-model="selected" :options="options" class="mb-3" required>
+          <b-form-select v-model="$store.state.grade" :options="options" class="mb-3" required disabled>
           </b-form-select>
         </b-col>
       </b-row>
@@ -57,13 +44,13 @@
 import Logo from '~/components/Logo.vue'
 
 export default {
+  async asyncData () {
+
+  }
   fetch ({ store, redirect }) {
-    /*
-    console.log(store.state.x)
     if (!store.state.name) {
       return redirect('/login')
     }
-    */
   },
   data: function () {
     return {

@@ -13,8 +13,14 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^4.3.0",
     "@nuxtjs/bootstrap-vue": "^2.0.2",
-    "nuxt": "^1.0.0-rc11"
+    "@nuxtjs/proxy": "^1.1.2",
+    "js-cookie": "^2.1.4",
+    "nuxt": "^1.0.0-rc11",
+    "vue-cookie": "^1.1.4",
+    "vuex-persistedstate": "^2.0.0",
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",

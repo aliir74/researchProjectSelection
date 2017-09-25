@@ -22,9 +22,6 @@
         <b-btn id="sendBtn" :variant="'outline-success'" class="mx-3" @click="login">
           ورود
         </b-btn>
-        <b-btn  :variant="'outline-danger'" class="mx-3" @click="checkLogin">
-          چک
-        </b-btn>
       </b-row>
     </b-card>
   </b-container>
@@ -40,19 +37,7 @@
       }
     },
     methods: {
-      login: function () {
-        console.log(this.$axios.defaults)
-        var data1 = this.username
-        var data2 = this.password
-        this.$store.dispatch('login', {username: data1, password: data2})
-        /*
-        this.$axios.post('http://localhost:8000/api/login', {
-          username: this.username,
-          password: this.password
-        })
-        */
-      },
-      checkLogin: async function () {
+      login: async function () {
         let data = (await this.$axios({
           method: 'GET',
           url: 'http://localhost:8000/',
@@ -63,52 +48,10 @@
         })).data
         console.log(data)
         if (data === 'hello') {
-          this.$store.commit('SET_INFO', {name: 'ali', grade: 2})
+          this.$store.commit('SET_INFO', {name: 'ali', grade: 7})
           console.log(this.$store.state.name)
-          setTimeout(function () {
-            window.location.replace('/')
-          }, 2000)
+          window.location.replace('/')
         }
-        // var data = {username: this.username, password: this.password}
-        /*
-        var user = await (this.$axios.post('http://localhost:8000/login', data, {
-          mode: 'no-cors',
-          headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
-          }
-        })).data
-        console.log(user.user)
-        */
-        /*
-        fetch('http://localhost:8000/login', {
-          // Send the client cookies to the server
-          credentials: 'same-origin',
-          method: 'POST',
-          mode: 'no-cors',
-          headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
-          },
-          body: JSON.stringify({
-            username: this.username,
-            password: this.password
-          })
-        })
-          .then((res) => {
-            console.log('res: ' + res.text())
-            if (res.status === 401) {
-              throw new Error('Bad credentials')
-            } else {
-              return res.text().then(function (text) {
-                return text ? JSON.parse(text) : {}
-              })
-            }
-          })
-          .then((authUser) => {
-            console.log('authUser: ' + authUser)
-          })
-          */
       }
     }
 }

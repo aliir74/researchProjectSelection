@@ -9,7 +9,7 @@ const store = () => {
       username: null,
       password: null,
       name: null,
-      grade: null
+      grade: 7
     },
     plugins: [createPersistedState()],
     mutations: {
