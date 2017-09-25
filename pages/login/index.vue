@@ -53,13 +53,22 @@
         */
       },
       checkLogin: async function () {
-        let fields = { username: this.username, password: this.password }
-        let { token } = (await this.$axios({
-          method: 'POST',
-          url: 'http://localhost:8000/login',
-          data: fields
+        let data = (await this.$axios({
+          method: 'GET',
+          url: 'http://localhost:8000/',
+          auth: {
+            username: this.username,
+            password: this.password
+          }
         })).data
-        console.log(token)
+        console.log(data)
+        if (data === 'hello') {
+          this.$store.commit('SET_INFO', {name: 'ali', grade: 2})
+          console.log(this.$store.state.name)
+          setTimeout(function () {
+            window.location.replace('/')
+          }, 2000)
+        }
         // var data = {username: this.username, password: this.password}
         /*
         var user = await (this.$axios.post('http://localhost:8000/login', data, {

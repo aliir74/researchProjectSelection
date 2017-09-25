@@ -58,10 +58,12 @@ import Logo from '~/components/Logo.vue'
 
 export default {
   fetch ({ store, redirect }) {
-    console.log('!!!! ' + store.state.authUser)
-    if (!store.state.authUser) {
+    /*
+    console.log(store.state.x)
+    if (!store.state.name) {
       return redirect('/login')
     }
+    */
   },
   data: function () {
     return {
@@ -138,7 +140,7 @@ export default {
     }
   },
   mounted: function () {
-    console.log(this.$store.state.authUser)
+    console.log(this.$store.state.name)
   },
   components: {
     Logo

@@ -19,6 +19,7 @@ module.exports = {
   proxy: [
     ['/api/login', { target: 'http://localhost:8000/login' }]
   ],
+  plugins: [{ src: '~/plugins/localStorage.js', ssr: false}],
   /*
   ** Customize the progress bar color
   */
