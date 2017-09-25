@@ -38,10 +38,16 @@ export default {
   },
   methods: {
     login: function () {
-      this.$axios.post('/api/login', {
+      console.log(this.$axios.defaults)
+      var data1 = this.username
+      var data2 = this.password
+      this.$store.dispatch('login', {username: data1, password: data2})
+      /*
+      this.$axios.post('http://localhost:8000/api/login', {
         username: this.username,
         password: this.password
       })
+      */
     }
   }
 }

@@ -58,9 +58,12 @@ import Logo from '~/components/Logo.vue'
 
 export default {
   fetch ({ store, redirect }) {
+    console.log('!!!! ' + store.state.authUser)
+    /*
     if (!store.state.authUser) {
       return redirect('/login')
     }
+    */
   },
   data: function () {
     return {
@@ -135,6 +138,9 @@ export default {
       this.selectedProject = tmp.concat()
       console.log(this.selectedProject)
     }
+  },
+  mounted: function () {
+    console.log(this.$store.state.authUser)
   },
   components: {
     Logo
