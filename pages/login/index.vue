@@ -38,19 +38,23 @@
     },
     methods: {
       login: async function () {
-        let data = (await this.$axios({
-          method: 'GET',
-          url: 'http://localhost:8000/',
-          auth: {
-            username: this.username,
-            password: this.password
+        try {
+          let response = (await this.$axios({
+            method: 'GET',
+            url: 'http://localhost:8000/',
+            auth: {
+              username: this.username,
+              password: this.password
+            }
+          }))
+          var data = response.data
+          if (data === 'hello') {
+            this.$store.commit('SET_INFO', {name: 'ali', grade: 7})
+            console.log(this.$store.state.name)
+            window.location.replace('/')
           }
-        })).data
-        console.log(data)
-        if (data === 'hello') {
-          this.$store.commit('SET_INFO', {name: 'ali', grade: 7})
-          console.log(this.$store.state.name)
-          window.location.replace('/')
+        } catch (err) {
+          this.$toast.error('خطا در ورود')
         }
       }
     }

@@ -46,7 +46,7 @@ import Logo from '~/components/Logo.vue'
 export default {
   async asyncData () {
 
-  }
+  },
   fetch ({ store, redirect }) {
     if (!store.state.name) {
       return redirect('/login')

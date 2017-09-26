@@ -15,7 +15,7 @@ module.exports = {
   },
   mode: 'spa',
   modules: [
-    '@nuxtjs/bootstrap-vue', '@nuxtjs/proxy', '@nuxtjs/axios'
+    '@nuxtjs/bootstrap-vue', '@nuxtjs/proxy', '@nuxtjs/axios', '@nuxtjs/toast'
   ],
   proxy: [
     ['/api/login', { target: 'http://localhost:8000/login' }]
