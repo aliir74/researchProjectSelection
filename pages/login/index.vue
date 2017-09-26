@@ -39,7 +39,7 @@
     methods: {
       login: async function () {
         try {
-          let response = (await this.$axios({
+          (await this.$axios({
             method: 'GET',
             url: 'http://localhost:8000/',
             auth: {
@@ -47,12 +47,10 @@
               password: this.password
             }
           }))
-          var data = response.data
-          if (data === 'hello') {
-            this.$store.commit('SET_INFO', {name: 'ali', grade: 7})
-            console.log(this.$store.state.name)
-            window.location.replace('/')
-          }
+          this.$store.commit('SET_USER', {username: this.username, password: this.password})
+          this.$store.commit('SET_INFO', {name: 'ali', grade: 7})
+          console.log(this.$store.state.username)
+          window.location.replace('/')
         } catch (err) {
           this.$toast.error('خطا در ورود')
         }

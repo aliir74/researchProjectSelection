@@ -127,7 +127,7 @@ export default {
     }
   },
   mounted: function () {
-    console.log(this.$store.state.name)
+    console.log(this.$store.state.username)
   },
   components: {
     Logo
