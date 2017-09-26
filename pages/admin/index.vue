@@ -1,14 +1,33 @@
 <template>
-  <b-container style="width: 50vw;" class="my-4">
+  <b-container style="width: 60vw;" class="my-4">
     <b-card border-variant="success"
             header="پنل ادمین"
             header-bg-variant="success"
             header-text-variant="white"
             align="center" class="w-100">
-      <b-row class="mx-auto">
-        <b-btn id="sendBtn" :variant="'outline-success'" class="mx-3" @click="">
-          ورود
-        </b-btn>
+      <b-row class="mt-3">
+        <b-col sm="9">
+          <b-form-file id="file_input" v-model="usersFile" choose-label="کاربران"></b-form-file>
+        </b-col>
+        <b-col sm="3">
+          <b-btn variant="outline-success" @click="postUsers">
+            ثبت کاربران
+          </b-btn>
+        </b-col>
+      </b-row>
+      <b-row class="mt-3">
+        <b-col sm="5">
+          <b-form-file id="file_input" v-model="projectsFile" choose-label="پروژه‌ها"></b-form-file>
+        </b-col>
+        <b-col sm="4">
+          <b-form-select v-model="selected" :options="options" class="mb-3">
+          </b-form-select>
+        </b-col>
+        <b-col sm="3">
+          <b-btn variant="outline-success" @click="postProjects">
+            ثبت پروژه‌ها
+          </b-btn>
+        </b-col>
       </b-row>
     </b-card>
   </b-container>
@@ -26,6 +45,15 @@
     },
     data: function () {
       return {
+        selected: null,
+        usersFile: null,
+        projectsFile: null,
+        options: [
+          {value: null, text: 'پایه‌ی مربوط به پروژه‌ها'},
+          {value: 7, text: 'پایه‌ی هفتم'},
+          {value: 8, text: 'پایه‌ی هشتم'},
+          {value: 9, text: 'پایه‌ی نهم'}
+        ]
       }
     },
     methods: {
