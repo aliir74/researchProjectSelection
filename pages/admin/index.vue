@@ -57,7 +57,17 @@
       }
     },
     methods: {
-      uploadUsers: async function () {
+      postUsers: async function () {
+        var data = new FormData()
+        data.append('file', this.usersFile)
+        var x = await this.$axios({
+          method: 'POST',
+          url: 'http://localhost:8000/addusers',
+          data: data
+        })
+        console.log(x.data)
+      },
+      postProjects: async function () {
       }
     }
   }
