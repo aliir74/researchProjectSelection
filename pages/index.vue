@@ -5,6 +5,10 @@
             header-bg-variant="success"
             header-text-variant="white"
             align="center" class="w-100">
+      <b-row class="mb-2">
+        <b-col sm="3">نام:</b-col>
+        <b-col>{{$store.state.name}}</b-col>
+      </b-row>
       <b-row>
         <b-col sm="3"><label>پایه‌ی تحصیلی:</label></b-col>
         <b-col>
@@ -44,12 +48,22 @@
 import Logo from '~/components/Logo.vue'
 
 export default {
-  async asyncData () {
-
-  },
   fetch ({ store, redirect }) {
     if (!store.state.name) {
       return redirect('/login')
+    }
+  },
+  async asyncData ({ store, app }) {
+    var data = (await app.$axios({
+      method: 'GET',
+      url: 'http://localhost:8000/projects/' + store.state.grade.toString()
+    })).data
+    var projects = [{value: null, text: 'انتخاب کنید!'}]
+    for (var i = 0; i < data.length; i++) {
+      projects.push({value: i + 1, text: data[i]})
+    }
+    return {
+      projects: projects
     }
   },
   data: function () {
@@ -62,6 +76,7 @@ export default {
         {value: 8, text: 'پایه‌ی هشتم'},
         {value: 9, text: 'پایه‌ی نهم'}
       ],
+      /*
       projects: [
         {value: null, text: 'انتخاب کنید!'},
         {value: 1, text: 'مسئله‌ی ۱'},
@@ -72,6 +87,7 @@ export default {
         {value: 6, text: 'مسئله‌ی ۶'},
         {value: 7, text: 'مسئله‌ی ۷'}
       ],
+      */
       selectedProject: [null, null, null, null, null, null, null, null]
     }
   },

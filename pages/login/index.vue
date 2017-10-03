@@ -39,18 +39,19 @@
     methods: {
       login: async function () {
         try {
-          (await this.$axios({
+          var data = (await this.$axios({
             method: 'GET',
             url: 'http://localhost:8000/',
             auth: {
               username: this.username,
               password: this.password
             }
-          }))
-          this.$store.commit('SET_USER', {username: this.username, password: this.password})
-          this.$store.commit('SET_INFO', {name: 'ali', grade: 7})
-          console.log(this.$store.state.username)
-          window.location.replace('/')
+          })).data
+          this.$store.commit('SET_USER', {username: data.username, password: this.password})
+          this.$store.commit('SET_INFO', {name: data.name, grade: data.grade})
+          setTimeout(function () {
+            window.location.replace('/')
+          }, 1000)
         } catch (err) {
           this.$toast.error('خطا در ورود')
         }
