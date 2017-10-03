@@ -71,22 +71,30 @@
       postUsers: async function () {
         var data = new FormData()
         data.append('file', this.usersFile)
-        var x = await this.$axios({
-          method: 'POST',
-          url: 'http://localhost:8000/addusers',
-          data: data
-        })
-        console.log(x.data)
+        try {
+          var x = await this.$axios({
+            method: 'POST',
+            url: 'http://localhost:8000/addusers',
+            data: data
+          })
+          this.$toast.success(x.data.filename + ` uploaded!`)
+        } catch (err) {
+          this.$toast.error(err)
+        }
       },
       postProjects: async function () {
         var data = new FormData()
         data.append('file', this.projectsFile)
-        var x = await this.$axios({
-          method: 'POST',
-          url: ('http://localhost:8000/addprojects/' + this.selected),
-          data: data
-        })
-        console.log(x.data)
+        try {
+          var x = await this.$axios({
+            method: 'POST',
+            url: ('http://localhost:8000/addprojects/' + this.selected),
+            data: data
+          })
+          this.$toast.success(x.data.filename + ` uploaded!`)
+        } catch (err) {
+          this.$toast.error(err)
+        }
       }
     }
   }
