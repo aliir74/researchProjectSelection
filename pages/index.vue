@@ -62,6 +62,7 @@ export default {
     for (var i = 0; i < data.length; i++) {
       projects.push({value: i + 1, text: data[i]})
     }
+    // console.log(projects)
     return {
       projects: projects
     }
