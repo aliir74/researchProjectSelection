@@ -49,9 +49,11 @@
           })).data
           this.$store.commit('SET_USER', {username: data.username, password: this.password})
           this.$store.commit('SET_INFO', {name: data.name, grade: data.grade})
-          setTimeout(function () {
+          if (data.username === 'admin') {
+            window.location.replace('/admin')
+          } else {
             window.location.replace('/')
-          }, 1000)
+          }
         } catch (err) {
           this.$toast.error('خطا در ورود')
         }

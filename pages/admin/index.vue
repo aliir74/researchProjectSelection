@@ -43,7 +43,7 @@
       console.log(store.state.username)
       if ((!store.state.username) || (store.state.username !== 'admin')) {
         console.log((!store.state.username) || (store.state.username === 'admin‌'))
-        // return redirect('/login')
+        return redirect('/login')
       }
     },
     data: function () {
