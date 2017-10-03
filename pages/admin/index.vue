@@ -5,10 +5,12 @@
             header-bg-variant="success"
             header-text-variant="white"
             align="center" class="w-100">
-      <b-row class="mt-3">
-        <b-col sm="12 mb-2">
-          <b-alert dismissible variant="danger p-2 my-1 mx-auto" show>فایل کاربران باید با فرمت xlsx باشد. همچنین هر پایه‌ در یک شیت جدا که نام شیت برابر با نام پایه باشد ( ۷ و ... ). به علاوه ردیف اول تمام شیت ها باید حاوی عنوان اطلاعات هر ستون بوده که شامل username، name، password هست.</b-alert>
+      <b-row class="mb-2">
+        <b-col sm="12">
+          <b-alert dismissible variant="danger p-2 my-1 mx-auto" show>فایل کاربران باید با فرمت xlsx باشد. همچنین هر پایه‌ در یک شیت جدا که نام شیت برابر با نام پایه باشد ( ۷ و ... ). به علاوه ردیف اول تمام شیت ها باید حاوی عنوان اطلاعات هر ستون بوده که حتما شامل username، name، password باشد.</b-alert>
         </b-col>
+      </b-row>
+      <b-row class="">
         <b-col sm="9">
           <b-form-file id="file_input" v-model="usersFile" choose-label="کاربران"></b-form-file>
         </b-col>
@@ -18,7 +20,13 @@
           </b-btn>
         </b-col>
       </b-row>
-      <b-row class="mt-3">
+
+      <b-row class="mt-5">
+        <b-col sm="12">
+          <b-alert dismissible variant="danger p-2 my-1 mx-auto" show>فایل آپلودی برای پروژه‌های هر پایه باید یک فایل text باشد که در هر خط آن نام یک پروژه نوشته شده است.</b-alert>
+        </b-col>
+      </b-row>
+      <b-row class="">
         <b-col sm="5">
           <b-form-file id="file_input" v-model="projectsFile" choose-label="پروژه‌ها"></b-form-file>
         </b-col>
@@ -40,9 +48,9 @@
   import 'whatwg-fetch'
   export default {
     fetch ({ store, redirect }) {
-      console.log(store.state.username)
+      // console.log(store.state.username)
       if ((!store.state.username) || (store.state.username !== 'admin')) {
-        console.log((!store.state.username) || (store.state.username === 'admin‌'))
+        // console.log((!store.state.username) || (store.state.username === 'admin‌'))
         return redirect('/login')
       }
     },

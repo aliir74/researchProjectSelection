@@ -51,6 +51,8 @@ export default {
   fetch ({ store, redirect }) {
     if (!store.state.name) {
       return redirect('/login')
+    } else if (store.state.username === 'admin') {
+      return redirect('/admin')
     }
   },
   async asyncData ({ store, app }) {
