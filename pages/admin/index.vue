@@ -6,6 +6,9 @@
             header-text-variant="white"
             align="center" class="w-100">
       <b-row class="mt-3">
+        <b-col sm="12 mb-2">
+          <b-alert variant="danger p-2 my-1 mx-auto" show>فایل کاربران باید با فرمت xlsx باشد. همچنین هر پایه‌ در یک شیت جدا که نام شیت برابر با نام پایه باشد ( ۷ و ... ). به علاوه ردیف اول تمام شیت ها باید حاوی عنوان اطلاعات هر ستون بوده که شامل username، name، password هست.</b-alert>
+        </b-col>
         <b-col sm="9">
           <b-form-file id="file_input" v-model="usersFile" choose-label="کاربران"></b-form-file>
         </b-col>
@@ -13,9 +16,6 @@
           <b-btn variant="outline-success" @click="postUsers">
             ثبت کاربران
           </b-btn>
-        </b-col>
-        <b-col>
-          <b-alert variant="danger p-2 my-1 mx-auto w-50" show>فایل کاربران باید با فرمت xlsx باشد. همچنین هر پایه‌ در یک شیت جدا که نام شیت برابر با نام پایه باشد ( ۷ و ... ). به علاوه ردیف اول تمام شیت ها باید حاوی عنوان اطلاعات هر ستون بوده که شامل username، name، password هست.</b-alert>
         </b-col>
       </b-row>
       <b-row class="mt-3">
@@ -71,6 +71,14 @@
         console.log(x.data)
       },
       postProjects: async function () {
+        var data = new FormData()
+        data.append('file', this.projectsFile)
+        var x = await this.$axios({
+          method: 'POST',
+          url: ('http://localhost:8000/addprojects/' + this.selected),
+          data: data
+        })
+        console.log(x.data)
       }
     }
   }
