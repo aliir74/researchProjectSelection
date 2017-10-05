@@ -41,8 +41,8 @@
         try {
           var data = (await this.$axios({
             method: 'GET',
-            // url: 'http://208.68.36.50:8001/',
-            url: 'http://localhost:8001/',
+            url: 'http://208.68.36.50:8001/',
+            // url: 'http://localhost:8001/',
             auth: {
               username: this.username,
               password: this.password

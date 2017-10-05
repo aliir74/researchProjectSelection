@@ -66,8 +66,8 @@
     async asyncData ({ app }) {
       var data = (await app.$axios({
         method: 'GET',
-        // url: 'http://208.68.36.50:8001/enrolled'
-        url: 'http://localhost:8001/enrolled'
+        url: 'http://208.68.36.50:8001/enrolled'
+        // url: 'http://localhost:8001/enrolled'
       })).data
       return {
         enrolled: data.enrolled,
@@ -94,8 +94,8 @@
         try {
           var x = await this.$axios({
             method: 'POST',
-            // url: 'http://208.68.36.50:8000/addusers',
-            url: 'http://localhost:8001/addusers',
+            url: 'http://208.68.36.50:8000/addusers',
+            // url: 'http://localhost:8001/addusers',
             data: data
           })
           this.$toast.success(x.data.filename + ` uploaded!`)
@@ -109,8 +109,8 @@
         try {
           var x = await this.$axios({
             method: 'POST',
-            // url: ('http://208.68.36.50:8001/addprojects/' + this.selected),
-            url: ('http://localhost:8001/addprojects/' + this.selected),
+            url: ('http://208.68.36.50:8001/addprojects/' + this.selected),
+            // url: ('http://localhost:8001/addprojects/' + this.selected),
             data: data
           })
           this.$toast.success(x.data.filename + ` uploaded!`)
@@ -121,8 +121,8 @@
       reloadEnrolled: async function () {
         var data = (await this.$axios({
           method: 'GET',
-          // url: 'http://208.68.36.50:8001/enrolled'
-          url: 'http://localhost:8001/enrolled'
+          url: 'http://208.68.36.50:8001/enrolled'
+          // url: 'http://localhost:8001/enrolled'
         })).data
         this.enrolled = data.enrolled
         this.max = data.all

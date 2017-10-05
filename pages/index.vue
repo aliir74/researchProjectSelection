@@ -74,8 +74,8 @@ export default {
   async asyncData ({ store, app }) {
     var data = (await app.$axios({
       method: 'GET',
-      // url: 'http://208.68.36.50:8001/projects/' + store.state.grade.toString()
-      url: 'http://localhost:8001/projects/' + store.state.grade.toString()
+      url: 'http://208.68.36.50:8001/projects/' + store.state.grade.toString()
+      // url: 'http://localhost:8001/projects/' + store.state.grade.toString()
     })).data
     var selectedProject = []
     var projects = [{value: null, text: 'انتخاب کنید!'}]
@@ -169,8 +169,8 @@ export default {
       try {
         var x = (await this.$axios({
           method: 'POST',
-          // url: 'http://208.68.36.50:8001/projects/' + store.state.grade.toString()
-          url: 'http://localhost:8001/adduserprojects/' + this.$store.state.username.toString(),
+          url: 'http://208.68.36.50:8001/projects/' + store.state.grade.toString()
+          // url: 'http://localhost:8001/adduserprojects/' + this.$store.state.username.toString(),
           data: {
             projects: sendProjects
           }
