@@ -32,12 +32,17 @@
         </b-btn>
         <b-popover class="t" target="sendBtn"
                    triggers="hover focus"
-                   content="فقط یک بار مجاز به ثبت نام هستید">
+                   content="از انتخاب خود مطمئن شوید :)">
         </b-popover>
 
         <b-btn id="test" :variant="'outline-danger'" @click="resetPriorities">
           پاک کردن اولویت‌ها
         </b-btn>
+        <b-popover class="t" target="test"
+                   triggers="hover focus"
+                   placement="left"
+                   content="این دکمه فقط منو‌های بالا را ریست می‌کند">
+        </b-popover>
 
       </b-row>
     </b-card>
@@ -58,7 +63,8 @@ export default {
   async asyncData ({ store, app }) {
     var data = (await app.$axios({
       method: 'GET',
-      url: 'http://208.68.36.50:8000/projects/' + store.state.grade.toString()
+      // url: 'http://208.68.36.50:8000/projects/' + store.state.grade.toString()
+      url: 'http://localhost:8001/projects/' + store.state.grade.toString()
     })).data
     var selectedProject = []
     var projects = [{value: null, text: 'انتخاب کنید!'}]
@@ -128,7 +134,7 @@ export default {
           nullCnt += 1
         }
       })
-      if (nullCnt === 1 && this.usernameEnter && this.passwordEnter) {
+      if (nullCnt === 0) {
         return false
       } else {
         return true
@@ -153,15 +159,18 @@ export default {
         var x = (await this.$axios({
           method: 'POST',
           // url: 'http://208.68.36.50:8000/projects/' + store.state.grade.toString()
-          url: 'http://localhost:8000/adduserprojects/' + this.$store.state.username.toString(),
+          url: 'http://localhost:8001/adduserprojects/' + this.$store.state.username.toString(),
           data: {
             projects: sendProjects
           }
         })).data
-        console.log(x)
-        this.toast.$success('اولویت ها با موفقیت ذخیره شدند.')
+        if (x === 'ok') {
+          this.$toast.success('اولویت ها با موفقیت ذخیره شدند')
+        } else {
+          this.$toast.error('مشکلی در ذخیره اولویت‌ها پیش آمد')
+        }
       } catch (err) {
-        this.toast.$error(err)
+        this.$toast.error(err)
       }
     }
   },
