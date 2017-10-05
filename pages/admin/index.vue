@@ -94,7 +94,7 @@
         try {
           var x = await this.$axios({
             method: 'POST',
-            url: 'http://208.68.36.50:8000/addusers',
+            url: 'http://208.68.36.50:8001/addusers',
             // url: 'http://localhost:8001/addusers',
             data: data
           })
