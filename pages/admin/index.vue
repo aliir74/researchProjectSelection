@@ -74,7 +74,7 @@
         try {
           var x = await this.$axios({
             method: 'POST',
-            url: 'http://localhost:8000/addusers',
+            url: 'http://208.68.36.50:8000/addusers',
             data: data
           })
           this.$toast.success(x.data.filename + ` uploaded!`)
@@ -88,7 +88,7 @@
         try {
           var x = await this.$axios({
             method: 'POST',
-            url: ('http://localhost:8000/addprojects/' + this.selected),
+            url: ('http://208.68.36.50:8000/addprojects/' + this.selected),
             data: data
           })
           this.$toast.success(x.data.filename + ` uploaded!`)

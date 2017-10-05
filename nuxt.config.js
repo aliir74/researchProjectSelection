@@ -18,7 +18,7 @@ module.exports = {
     '@nuxtjs/bootstrap-vue', '@nuxtjs/proxy', '@nuxtjs/axios', '@nuxtjs/toast'
   ],
   proxy: [
-    ['/api/login', { target: 'http://localhost:8000/login' }]
+    ['/api/login', { target: 'http://208.68.36.50:8000/login' }]
   ],
   plugins: [{ src: '~/plugins/localStorage.js', ssr: false}],
   /*

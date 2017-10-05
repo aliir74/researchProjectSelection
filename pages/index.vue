@@ -27,7 +27,7 @@
       </b-row>
 
       <b-row class="mx-auto">
-        <b-btn id="sendBtn" :variant="'outline-success'" class="mx-3" :disabled="checkSend">
+        <b-btn id="sendBtn" :variant="'outline-success'" class="mx-3" :disabled="checkSend" @click="sendPriorities">
           ارسال
         </b-btn>
         <b-popover class="t" target="sendBtn"
@@ -58,14 +58,17 @@ export default {
   async asyncData ({ store, app }) {
     var data = (await app.$axios({
       method: 'GET',
-      url: 'http://localhost:8000/projects/' + store.state.grade.toString()
+      url: 'http://208.68.36.50:8000/projects/' + store.state.grade.toString()
     })).data
+    var selectedProject = []
     var projects = [{value: null, text: 'انتخاب کنید!'}]
     for (var i = 0; i < data.length; i++) {
       projects.push({value: i + 1, text: data[i]})
+      selectedProject.push(null)
     }
     // console.log(projects)
     return {
+      selectedProject: selectedProject,
       projects: projects
     }
   },
@@ -78,7 +81,7 @@ export default {
         {value: 7, text: 'پایه‌ی هفتم'},
         {value: 8, text: 'پایه‌ی هشتم'},
         {value: 9, text: 'پایه‌ی نهم'}
-      ],
+      ]
       /*
       projects: [
         {value: null, text: 'انتخاب کنید!'},
@@ -91,7 +94,7 @@ export default {
         {value: 7, text: 'مسئله‌ی ۷'}
       ],
       */
-      selectedProject: [null, null, null, null, null, null, null, null]
+      // selectedProject: [null, null, null, null, null, null, null, null]
     }
   },
   computed: {
@@ -119,8 +122,6 @@ export default {
       return ans
     },
     checkSend: function () {
-      return false
-      /*
       var nullCnt = 0
       this.selectedProject.forEach(function (i) {
         if (i === null) {
@@ -132,7 +133,6 @@ export default {
       } else {
         return true
       }
-      */
     }
   },
   methods: {
@@ -143,6 +143,26 @@ export default {
       }
       this.selectedProject = tmp.concat()
       console.log(this.selectedProject)
+    },
+    sendPriorities: async function () {
+      var sendProjects = []
+      for (var i = 0; i < this.selectedProject.length; i++) {
+        sendProjects.push({priority: i + 1, name: this.projects[i + 1].text})
+      }
+      try {
+        var x = (await this.$axios({
+          method: 'POST',
+          // url: 'http://208.68.36.50:8000/projects/' + store.state.grade.toString()
+          url: 'http://localhost:8000/adduserprojects/' + this.$store.state.username.toString(),
+          data: {
+            projects: sendProjects
+          }
+        })).data
+        console.log(x)
+        this.toast.$success('اولویت ها با موفقیت ذخیره شدند.')
+      } catch (err) {
+        this.toast.$error(err)
+      }
     }
   },
   mounted: function () {
