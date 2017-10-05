@@ -5,6 +5,15 @@
             header-bg-variant="success"
             header-text-variant="white"
             align="center" class="w-100">
+      <b-row class="mb-2" dir="ltr">
+        <b-col class="my-1" sm="12" v-for="(item, index) in enrolled" :key="index">
+           درصد ثبت نامی پایه {{index+7}} ام
+          <b-progress :value="item" :max="max[index]" show-progress animated></b-progress>
+        </b-col>
+      </b-row>
+      <b-btn class="mb-2" variant="outline-info" @click="reloadEnrolled">
+        بروزرسانی
+      </b-btn>
       <b-row class="mb-2">
         <b-col sm="12">
           <b-alert dismissible variant="danger p-2 my-1 mx-auto" show>فایل کاربران باید با فرمت xlsx باشد. همچنین هر پایه‌ در یک شیت جدا که نام شیت برابر با نام پایه باشد ( ۷ و ... ). به علاوه ردیف اول تمام شیت ها باید حاوی عنوان اطلاعات هر ستون بوده که حتما شامل username، name، password باشد.</b-alert>
@@ -54,6 +63,17 @@
         return redirect('/login')
       }
     },
+    async asyncData ({ app }) {
+      var data = (await app.$axios({
+        method: 'GET',
+        // url: 'http://208.68.36.50:8001/enrolled'
+        url: 'http://localhost:8001/enrolled'
+      })).data
+      return {
+        enrolled: data.enrolled,
+        max: data.all
+      }
+    },
     data: function () {
       return {
         selected: null,
@@ -89,7 +109,7 @@
         try {
           var x = await this.$axios({
             method: 'POST',
-            // url: ('http://208.68.36.50:8000/addprojects/' + this.selected),
+            // url: ('http://208.68.36.50:8001/addprojects/' + this.selected),
             url: ('http://localhost:8001/addprojects/' + this.selected),
             data: data
           })
@@ -97,6 +117,15 @@
         } catch (err) {
           this.$toast.error(err)
         }
+      },
+      reloadEnrolled: async function () {
+        var data = (await this.$axios({
+          method: 'GET',
+          // url: 'http://208.68.36.50:8001/enrolled'
+          url: 'http://localhost:8001/enrolled'
+        })).data
+        this.enrolled = data.enrolled
+        this.max = data.all
       }
     }
   }
