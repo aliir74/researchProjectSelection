@@ -9,7 +9,8 @@ const store = () => {
       username: null,
       password: null,
       name: null,
-      grade: 7
+      grade: 7,
+      enrolled: false
     },
     plugins: [createPersistedState()],
     mutations: {
@@ -17,9 +18,13 @@ const store = () => {
         state.username = username
         state.password = password
       },
-      SET_INFO: function (state, {name, grade}) {
+      SET_INFO: function (state, {name, grade, enrolled}) {
         state.name = name
         state.grade = grade
+        state.enrolled = enrolled
+      },
+      SET_ENROLLED: function (state, {enrolled}) {
+        state.enrolled = enrolled
       }
     }
   })

@@ -9,6 +9,17 @@
         <b-col sm="3">نام:</b-col>
         <b-col>{{$store.state.name}}</b-col>
       </b-row>
+      <b-row class="mb-2">
+        <b-col sm="3"></b-col>
+        <b-col>
+          <b-form-checkbox id="checkbox1"
+                           v-model="$store.state.enrolled"
+                           value="true"
+                           unchecked-value="false" disabled>
+            شما قبلا ثبت نام کرده‌اید!
+          </b-form-checkbox>
+        </b-col>
+      </b-row>
       <b-row>
         <b-col sm="3"><label>پایه‌ی تحصیلی:</label></b-col>
         <b-col>
@@ -166,6 +177,7 @@ export default {
         })).data
         if (x === 'ok') {
           this.$toast.success('اولویت ها با موفقیت ذخیره شدند')
+          this.$store.commit('SET_ENROLLED', {enrolled: true})
         } else {
           this.$toast.error('مشکلی در ذخیره اولویت‌ها پیش آمد')
         }

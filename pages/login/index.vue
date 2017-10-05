@@ -49,7 +49,7 @@
             }
           })).data
           this.$store.commit('SET_USER', {username: data.username, password: this.password})
-          this.$store.commit('SET_INFO', {name: data.name, grade: data.grade})
+          this.$store.commit('SET_INFO', {name: data.name, grade: data.grade, enrolled: data.enrolled})
           if (data.username === 'admin') {
             window.location.replace('/admin')
           } else {
